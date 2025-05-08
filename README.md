@@ -72,12 +72,6 @@ start index.html
 
 ---
 
-## 📜 License
-
-This project is open source under the [MIT License](https://opensource.org/licenses/MIT). You are free to use, modify, and distribute it.
-
----
-
 ## Acknowledgements
 
 * [Wikipedia REST API](https://www.mediawiki.org/wiki/API:Main_page)
