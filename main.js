@@ -4,6 +4,13 @@ async function handleSubmit(event){
     const inputValue = document.querySelector('.js-search-input').value;
     const searchQuery = inputValue.trim();
 
+    const searchResults = document.querySelector('.js-search-results');
+    // clear the previous search results
+    searchResults.innerHTML = '';
+
+    const spinner = document.querySelector('.js-spinner');
+    spinner.classList.remove('hidden');
+
     try{
         const results = await searchWikipedia(searchQuery);
         displayResults(results);
@@ -11,6 +18,9 @@ async function handleSubmit(event){
     catch(err){
         console.log(err);
         alert('Failed to search Wikipedia');
+    }
+    finally{
+        spinner.classList.add('hidden');
     }
 }
 
