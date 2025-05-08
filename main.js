@@ -6,7 +6,7 @@ async function handleSubmit(event){
 
     try{
         const results = await searchWikipedia(searchQuery);
-        console.log(results);
+        displayResults(results);
     }
     catch(err){
         console.log(err);
@@ -22,6 +22,25 @@ async function searchWikipedia(searchQuery){
     }
     const json = await response.json();
     return json;
+}
+
+function displayResults(results){
+    const searchResults = document.querySelector('.js-search-results');
+    
+    results.query.search.forEach(result => {
+        const url = `https://en.wikipedia.org/?curid=${result.pageid}`;
+
+        searchResults.insertAdjacentHTML(
+            'beforeend',
+            `<div class="result-item">
+                <h3 class="result-title">
+                <a href="${url}" target="_blank" rel="noopener">${result.title}</a>
+                </h3>
+                <a href="${url}" class="result-link" target="_blank" rel="noopener">${url}</a>
+                <span class="result-snippet">${result.snippet}</span><br>
+            </div>`
+        );
+    })
 }
 
 const form = document.querySelector('.js-search-form');
